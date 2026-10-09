@@ -9,24 +9,26 @@ import { Icon as ICON } from '@iconify/react';
 import { useEffect } from 'react';
 
 const links = [
-  ["Home", '#HeroSection'],
-  ["Services", '#OurServices'],
-  ["Case Studies", '#CaseStudies'],
-  ["About", '#About']
+  ["Home", '/HeroSection'],
+  ["Services", '/OurServices'],
+  ["Case Studies", '/CaseStudies'],
+  ["Packages", '/Package'],
+  ["About", '/About']
 ]
 
 const icons = [
-  'eva:linkedin-outline', 'basil:facebook-outline', 'ant-design:instagram-outlined', 'bxl:telegram'
+  ['eva:linkedin-outline','https://www.linkedin.com/company/axvionel-digital-private-limited'], ['basil:facebook-outline','https://www.facebook.com/axvioneldigital'], ['ant-design:instagram-outlined','https://www.instagram.com/axvioneldigital/'], ['bxl:telegram','https://t.me/axvionel?text=Hi%20I%20want%20website%20and%20digital%20marketing']
 ]
 
 export default function Header() {
 
+  const [isScrolled, setIsScrolled] = useState(false);
   const [Dropdown, setDropdown] = useState(false)
-
 
   function OpenMenu() {
     setDropdown(true)
   }
+
   function CloseMenu() {
     setDropdown(false)
   }
@@ -43,147 +45,385 @@ export default function Header() {
     }
   }, [Dropdown])
 
-  function ClickSection(path){
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  function ClickSection(path) {
 
     document.body.classList.remove('overflow-hidden')
 
     setDropdown(false)
 
     window.location.href = path
-
   }
 
   return (
-    <header className="absolute inset-0 z-50 w-full h-18 px-8 sm:px-10 md:px-12 lg:px-14 " >
+    <header
+      className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-500 ease-out ${isScrolled
+        ? "py-0"
+        : "px-3 py-2 sm:px-5 md:px-8 lg:px-10"
+        }`} 
+    >
+      {/* =====================================================
+        FULL WIDTH HEADER
+    ====================================================== */}
 
+      <div
+        className={`w-full border-b transition-all duration-500 ease-out ${isScrolled
+          ? "border-white/10 bg-slate-950/75 shadow-2xl shadow-black/20 backdrop-blur-2xl"
+          : "border-transparent bg-transparent"
+          }`}
+      >
 
-      <div className="w-full max-w-326 h-full mx-auto flex justify-center items-center">
+        {/* Top light line */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cyan-400/50 to-transparent" />
 
-        {/* // desktop header */}
-        <div className='flex-1 h-14 flex gap-3 min-w-52 items-center' >
+        <div
+          className={`mx-auto flex h-16 items-center transition-all duration-500 ease-out ${isScrolled
+            ? "w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-10"
+            : "w-full max-w-7xl px-3 sm:px-5 md:px-8 lg:px-10"
+            }`}
+        >
 
-          {/* logo */}
-          <Image
-            src="/Logo_of_Axvional_digital.webp"
-            alt="Axvional logo"
-            width={15}
-            height={14}
-            loading='eager'
-            className='h-14 w-15' 
-          />
-          <Link href="https://www.axvionel.com/" target='_blank' className='relative leading-4.5 text-center shrink-0'>
-            <p className='font-bold text-white scale-95'>Axvional Digital</p>
-            <p className='text-[12px] text-gray-500 font-bold tracking-widest scale-y-85 '>PRIVATE LIMITED</p>
-            <Cpu className='absolute top-0 left-31 w-3 h-3 text-gray-300 transition-colors duration-500 ease-in hover:text-gray-500' />
-          </Link>
-        </div>
+          {/* =================================================
+            LOGO
+        ================================================== */}
 
-        {/* nav bar   */}
-        <div className='flex-4 hidden lg:block'>
-          <nav className=' w-auto flex justify-center gap-10 '>
-            {
-              links.map(([link, path], index) => (
-                <span key={`${link}-${index}`}>
-                  <a href={path} className='text-[#F4F8FC] opacity-90 font-custom font-extralight'>{link}</a>
-                </span>
-              ))
-            }
-          </nav>
-        </div>
+          <div className="flex min-w-0 flex-1 items-center">
 
-        {/* call button */}
-        <div className=' w-60 hidden md:flex justify-end'>
-          <button className='bg-[#FFC83D] text-black font-bold rounded-full w-full max-w-56 transition-all flex justify-center py-2 items-center gap-2 px-3 ' >
-            <p className='text-sm text-[#0B1736] '>
-              Get a Free Strategy Call
-            </p>
-            <ArrowRight className='w-5 h-5' />
-          </button>
-        </div>
+            <Link
+              href="https://www.axvionel.com"
+              className="group flex shrink-0 items-center gap-2"
+            >
 
-        {/* tablet */}
+              <Image
+                src="/images/Logo.webp"
+                alt="Axvional logo"
+                width={300}
+                height={200}
+                priority
+                className="h-10 w-11 object-contain transition-transform duration-500 group-hover:scale-105 sm:h-12 sm:w-14"
+              />
 
-        <div className='w-1/12 flex justify-end lg:hidden'>
-          <MdOutlineMenu onClick={OpenMenu} className='w-9 h-9 text-white' />
-        </div>
+              <div className="relative hidden leading-none sm:block">
 
-        {
-          Dropdown && (
-            <div className='absolute inset-0 bg-[#0B1736]/70 h-screen lg:hidden '>
-              <div className='absolute z-50 bg-[#0B1736] w-60 right-0 py-9 px-3 h-full min-[425px]:w-70 md:w-80 ' >
-                <div className=' flex flex-row gap-0 justify-between '>
-                  <div className=''>
-                    <image
-                      src={logo}
-                      alt="Axvional digital"
-                      className='w-14 h-14'
-                    />
-                    <Link to="https://www.axvionel.com/" target='_blank' className='relative leading-4.5 text-center shrink-0'>
-                      <p className='font-bold text-white scale-95'>Axvional Digital</p>
-                      <p className='text-[12px] text-gray-500 font-bold tracking-widest scale-y-85 '>PRIVATE LIMITED</p>
-                      <Cpu className='absolute top-0 left-31 w-3 h-3 text-gray-300 transition-colors duration-500 ease-in hover:text-gray-500' />
-                    </Link>
-                  </div>
-                  <ICON
-                    onClick={CloseMenu}
-                    icon='akar-icons:cross'
-                    className='w-6 h-6 text-[white] mt-4 '
-                  />
-                </div>
+                <p className="text-sm font-bold tracking-tight text-white transition-colors duration-300 group-hover:text-cyan-300">
+                  Axvional Digital
+                </p>
 
-                {/* mobile nav  */}
-                <div className='px-4 my-4'>
-                  <nav>
-                    {links.map(([Link, path], index) => (
-                      <div key={index} onClick={()=>{ClickSection(path)}} className='flex flex-rows justify-between items-center border-b border-gray-500/50 py-3 '>
-                        <a
-                          href={path}
-                          className='text-white font-semibold text-lg '
-                        >
-                          {Link}
-                        </a>
-                        <ICON
-                          icon='hugeicons:greater-than'
-                          className='w-5 h-5 text-white '
-                        />
-                      </div>
+                <p className="mt-1 text-[8px] font-bold tracking-[0.2em] text-white/40">
+                  PRIVATE LIMITED
+                </p>
 
-                    ))}
-                  </nav>
+                <Cpu className="absolute -right-4 -top-1 size-3 text-white/30 transition-all duration-500 group-hover:rotate-180 group-hover:text-cyan-400" />
 
-                </div>
-
-                <Link
-                  to=''
-                  className="bg-[#FFC83D] flex flex-row py-2 justify-center items-center gap-2 rounded-full my-6 mx-2"
-                >
-                  <p className=' text-[##0B1736] text-sm font-semibold '>Get a Free Strategy Call</p>
-                  <ArrowRight className='w-4 h-4' />
-                </Link>
-
-                <div className='border-t border-gray-500/60 mx-3 py-3'>
-                  <p className='text-white/60 text-base font-custom'>Follow Us</p>
-                  <div className="flex 
-                                            gap-3 
-                                            my-2">
-                    {icons.map((icon, index) => (
-                      <div key={index} className="border
-                                                          border-gray-400/20 
-                                                          rounded-xl ">
-                        <ICON icon={icon} className="w-5 
-                                                               h-5 
-                                                               text-white/60 
-                                                               mx-2 
-                                                               my-2" />
-                      </div>
-                    ))}
-                  </div>
-                </div>
               </div>
-            </div>
-          )
-        }
+
+            </Link>
+
+          </div>
+
+
+          {/* =================================================
+            DESKTOP NAVIGATION
+        ================================================== */}
+
+          <div className="hidden flex-1 lg:block">
+
+            <nav className="flex items-center justify-center gap-6 xl:gap-9">
+
+              {links.map(([link, path], index) => (
+
+                <a
+                  key={`${link}-${index}`}
+                  href={path}
+                  className="group relative whitespace-nowrap py-2 text-xs font-medium text-white/75 transition-all duration-300 hover:text-white xl:text-sm"
+                >
+
+                  {link}
+
+                  {/* underline */}
+                  <span className="absolute inset-x-0 bottom-0 mx-auto h-px w-0 bg-linear-to-r from-cyan-400 to-blue-500 transition-all duration-300 group-hover:w-full" />
+
+                  {/* glow */}
+                  <span className="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-cyan-400 blur-sm transition-all duration-300 group-hover:w-full" />
+
+                </a>
+
+              ))}
+
+            </nav>
+
+          </div>
+
+
+          {/* =================================================
+            DESKTOP CTA
+        ================================================== */}
+
+          <div className="hidden flex-1 justify-end md:flex mr-14 lg:mr-0!">
+
+            <button
+              type="button"
+              className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-full bg-linear-to-r from-yellow-300 via-yellow-400 to-amber-400 px-4 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-400/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-yellow-400/20 xl:px-5"
+            >
+
+              {/* shine */}
+              <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-700 group-hover:translate-x-full" />
+
+              <span className="relative whitespace-nowrap">
+                Get a Free Strategy Call
+              </span>
+
+              <ArrowRight className="relative size-4 transition-transform duration-300 group-hover:translate-x-1" />
+
+            </button>
+
+          </div>
+
+
+          {/* =================================================
+            MOBILE / TABLET MENU BUTTON
+        ================================================== */}
+
+          <div className="flex justify-end lg:hidden">
+
+            <button
+              type="button"
+              onClick={OpenMenu}
+              aria-label="Open navigation menu"
+              className="group flex size-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white backdrop-blur-md transition-all duration-300 hover:border-cyan-400/40 hover:bg-cyan-400/10 sm:size-11"
+            >
+
+              <MdOutlineMenu className="size-6 transition-all duration-300 group-hover:scale-110 group-hover:text-cyan-300" />
+
+            </button>
+
+          </div>
+
+        </div>
+
       </div>
+
+
+      {/* =====================================================
+        MOBILE SIDE MENU
+    ====================================================== */}
+
+      {Dropdown && (
+
+        <div className="fixed inset-0 z-50 lg:hidden">
+
+          {/* =================================================
+            BLURRED MIRROR BACKDROP
+        ================================================== */}
+
+          <div
+            className="absolute inset-0 bg-slate-950/55 backdrop-blur-xl menu-backdrop"
+            onClick={CloseMenu}
+          >
+
+            {/* cyan glow */}
+            <div className="absolute left-0 top-1/4 size-64 rounded-full bg-cyan-400/10 blur-3xl" />
+
+            {/* blue glow */}
+            <div className="absolute bottom-1/4 right-0 size-64 rounded-full bg-blue-500/10 blur-3xl" />
+
+          </div>
+
+
+          {/* =================================================
+            SIDE DRAWER
+        ================================================== */}
+
+          <div className="menu-drawer absolute right-0 top-0 flex h-full w-72 max-w-[88vw] flex-col overflow-hidden border-l border-white/15 bg-slate-950/80 shadow-2xl shadow-black/50 backdrop-blur-2xl sm:w-80 md:w-96">
+
+            {/* Top glow */}
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-32 bg-linear-to-b from-cyan-400/10 to-transparent" />
+
+
+            {/* =================================================
+              DRAWER HEADER
+          ================================================== */}
+
+            <div className="relative flex items-center justify-between border-b border-white/10 px-5 py-5">
+
+              <Link
+                href="/"
+                onClick={CloseMenu}
+                className="group flex items-center gap-2"
+              >
+
+                <Image
+                  src="/images/Logo.webp"
+                  alt="Axvional Digital"
+                  width={52}
+                  height={50}
+                  priority
+                  className="h-10 w-11 object-contain transition-transform duration-500 group-hover:scale-105"
+                />
+
+                <div className="leading-none">
+
+                  <p className="text-sm font-bold text-white transition-colors group-hover:text-cyan-300">
+                    Axvional Digital
+                  </p>
+
+                  <p className="mt-1 text-[7px] font-bold tracking-[0.2em] text-white/40">
+                    PRIVATE LIMITED
+                  </p>
+
+                </div>
+
+              </Link>
+
+
+              {/* Close */}
+              <button
+                type="button"
+                onClick={CloseMenu}
+                aria-label="Close navigation menu"
+                className="group flex size-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-all duration-300 hover:border-red-400/30 hover:bg-red-400/10 hover:text-white"
+              >
+
+                <ICON
+                  icon="akar-icons:cross"
+                  className="size-5 transition-transform duration-300 group-hover:rotate-90"
+                />
+
+              </button>
+
+            </div>
+
+
+            {/* =================================================
+              NAVIGATION
+          ================================================== */}
+
+            <div className="relative flex-1 overflow-y-auto px-4 py-5">
+
+              <p className="mb-3 px-2 text-[9px] font-semibold tracking-[0.2em] text-cyan-400/70">
+                NAVIGATION
+              </p>
+
+
+              <nav className="space-y-1">
+
+                {links.map(([Link, path], index) => (
+
+                  <div
+                    key={index}
+                    onClick={() => ClickSection(path)}
+                    className="group flex cursor-pointer items-center justify-between rounded-xl border border-transparent px-3 py-3 transition-all duration-300 hover:border-white/10 hover:bg-white/5"
+                  >
+
+                    <a
+                      href={path}
+                      className="text-sm font-medium text-white/75 transition-colors duration-300 group-hover:text-white sm:text-base"
+                    >
+                      {Link}
+                    </a>
+
+
+                    <div className="flex size-7 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-all duration-300 group-hover:bg-cyan-400/10 group-hover:text-cyan-400">
+
+                      <ICON
+                        icon="hugeicons:greater-than"
+                        className="size-4 transition-transform duration-300 group-hover:translate-x-0.5"
+                      />
+
+                    </div>
+
+                  </div>
+
+                ))}
+
+              </nav>
+
+
+              {/* =================================================
+                CTA
+            ================================================== */}
+
+              <div className="mt-6 rounded-2xl border border-cyan-400/20 bg-linear-to-br from-cyan-400/10 via-blue-500/5 to-transparent p-4">
+
+                <p className="text-xs font-semibold text-white">
+                  Ready to grow your business?
+                </p>
+
+                <p className="mt-1 text-[10px] leading-5 text-white/45">
+                  Talk to our team and get a tailored growth strategy.
+                </p>
+
+                <a
+                  href="/contact"
+                  onClick={CloseMenu}
+                  className="group mt-4 flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-yellow-300 to-amber-400 px-4 py-3 text-xs font-bold text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-400/20"
+                >
+
+                  Get a Free Strategy Call
+
+                  <ArrowRight className="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+
+                </a>
+
+              </div>
+
+            </div>
+
+
+            {/* =================================================
+              SOCIAL
+          ================================================== */}
+
+            <div className="relative border-t border-white/10 px-5 py-4">
+
+              <p className="text-[9px] font-semibold tracking-[0.2em] text-white/40">
+                FOLLOW US
+              </p>
+
+              <div className="mt-3 flex gap-2">
+
+                {icons.map(([icon, path], index) => (
+
+                  <Link
+                    key={index}
+                    href={path}
+                    target='_blank'
+                    className="group flex size-9 cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/5 transition-all duration-300 hover:-translate-y-1 hover:border-cyan-400/30 hover:bg-cyan-400/10"
+                  >
+
+                    <ICON
+                      icon={icon}
+                      className="size-4 text-white/50 transition-colors duration-300 group-hover:text-cyan-300"
+                    />
+
+                  </Link>
+
+                ))}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      )}
+
     </header>
   )
+
 }
