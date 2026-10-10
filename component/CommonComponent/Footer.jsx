@@ -13,7 +13,7 @@ const Nav = [
   ["ABOUT AXVIONALDIGITAL PRIVATE LIMITED",'https://www.axvionel.com/about'],
   ["SEO SERVICES",'https://www.axvionel.com/seo-packages'],
   ["DIGITAL MARKETING",'https://www.axvionel.com/services'],
-  ["CONTACT",""],
+  ["CONTACT","/Contact"],
 ];
 
 const specializations = [

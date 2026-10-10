@@ -10,11 +10,11 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 const links = [
-  ["Home", '/HeroSection'],
-  ["Services", '/OurServices'],
-  ["Case Studies", '/CaseStudies'],
-  ["Packages", '/Package'],
-  ["About", '/About']
+  ["Home", '/#HeroSection'],
+  ["Services", '/#OurServices'],
+  ["Case Studies", '/#CaseStudies'],
+  ["Packages", '/#Package'],
+  ["Contact", '/#contact']
 ]
 
 const icons = [
@@ -370,7 +370,7 @@ export default function Header() {
                 </p>
 
                 <a
-                  href="/contact"
+                  href="/Contact"
                   onClick={CloseMenu}
                   className="group mt-4 flex items-center justify-center gap-2 rounded-full bg-linear-to-r from-yellow-300 to-amber-400 px-4 py-3 text-xs font-bold text-slate-950 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-yellow-400/20"
                 >

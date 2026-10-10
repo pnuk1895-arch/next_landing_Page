@@ -123,7 +123,7 @@ export function ContactCard() {
 
         <div className="contact-glow contact-glow-delay absolute -bottom-24 -left-20 size-64 rounded-full bg-cyan-500/10 blur-3xl" />
 
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-cyan-950/30 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-cyan-950/30 to-transparent" />
       </div>
 
       {/* Heading */}
@@ -143,7 +143,7 @@ export function ContactCard() {
           </p>
         </div>
 
-        <div className="contact-send-icon hidden size-16 shrink-0 items-center justify-center rounded-full border border-blue-500/70 bg-blue-950/60 text-cyan-400 shadow-lg shadow-blue-500/20 sm:flex">
+        <div className="contact-send-icon mt-10 hidden size-16 shrink-0 items-center justify-center rounded-full border border-blue-500/70 bg-blue-950/60 text-cyan-400 shadow-lg shadow-blue-500/20 sm:flex">
           <Send className="size-7" />
         </div>
       </div>
@@ -229,7 +229,7 @@ export function ContactCard() {
         <button
           type="submit"
           disabled={status === "submitting"}
-          className="contact-submit group flex w-full min-w-0 items-center justify-center gap-3 rounded-xl bg-gradient-to-r from-cyan-400 via-blue-600 to-violet-600 px-4 py-4 text-center text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-600/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:cursor-wait disabled:opacity-70 sm:text-sm"
+          className="contact-submit group flex w-full min-w-0 items-center justify-center gap-3 rounded-xl bg-linear-to-r from-cyan-400 via-blue-600 to-violet-600 px-4 py-4 text-center text-xs font-black uppercase tracking-widest text-white shadow-lg shadow-blue-600/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 disabled:cursor-wait disabled:opacity-70 sm:text-sm"
         >
           <span>
             {status === "submitting"
