@@ -102,7 +102,7 @@ export default function HeroSection() {
 
               {/* Primary */}
               <a
-                href="/contact"
+                href="#contact"
                 className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-full bg-linear-to-r from-cyan-400 to-blue-500 px-5 py-3.5 text-xs font-bold text-slate-950 shadow-lg shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-400/30 sm:w-auto sm:px-7 sm:text-sm"
               >
                 {/* Shine */}
@@ -120,7 +120,7 @@ export default function HeroSection() {
 
 
               {/* Our Work */}
-              <a
+              {/* <a
                 href="#work"
                 className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-400/60 bg-slate-950/20 px-5 py-3.5 text-xs font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/20 sm:w-auto sm:px-7 sm:text-sm"
               >
@@ -132,7 +132,7 @@ export default function HeroSection() {
                 <span className="whitespace-nowrap">
                   Our Work
                 </span>
-              </a>
+              </a> */}
 
             </div>
 

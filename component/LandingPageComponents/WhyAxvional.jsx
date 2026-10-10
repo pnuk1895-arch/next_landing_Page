@@ -177,7 +177,7 @@ export default function WhyAxvionalSection() {
                             ))}
                         </ul>
 
-                        {/* CTA */}
+                        {/* CTA
                         <div className="mt-7">
                             <Link
                                 href="/about"
@@ -187,7 +187,7 @@ export default function WhyAxvionalSection() {
 
                                 <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                             </Link>
-                        </div>
+                        </div> */}
                     </div>
 
                     {/* Our Impact */}

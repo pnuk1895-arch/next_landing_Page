@@ -85,8 +85,7 @@ function IndustryCard({ industry }) {
     const Icon = industry.icon;
 
     return (
-        <Link
-            href={industry.href}
+        <div
             className="group relative block aspect-3/4 overflow-hidden rounded-xl border border-cyan-400/30 bg-slate-950 shadow-[0_12px_30px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-1 hover:border-cyan-300 hover:shadow-[0_16px_40px_rgba(6,182,212,0.2)] sm:aspect-4/3 lg:aspect-3/4"
         >
             <Image
@@ -104,23 +103,23 @@ function IndustryCard({ industry }) {
             <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-cyan-400/10 via-transparent to-blue-500/10 opacity-50 transition-opacity duration-500 group-hover:opacity-100" />
 
             {/* Card content */}
-            <div className="absolute inset-x-0 bottom-0 flex items-end gap-2 bg-linear-to-t from-slate-950/95 via-slate-950/70 to-transparent p-3 pt-10 sm:gap-3 sm:p-4 sm:pt-12">
+            <div className="absolute inset-x-0 bottom-0 flex items-end gap-2 bg-linear-to-t from-slate-950/95 via-slate-950/70 to-transparent p-3 pt-10 sm:gap-3 sm:p-4 sm:pt-12  ">
                 <div className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-cyan-400/40 bg-slate-950/70 text-cyan-400 shadow-lg backdrop-blur-sm transition-all duration-300 group-hover:border-cyan-300 group-hover:bg-cyan-400 group-hover:text-slate-950 sm:size-10">
                     <Icon className="size-5" strokeWidth={2} />
                 </div>
 
-                <h3 className="min-w-0 flex-1 text-xs font-bold leading-5 text-white transition-colors duration-300 group-hover:text-cyan-200 sm:text-sm">
+                <h3 className="min-w-0 flex-1 text-xs font-bold leading-5 text-white transition-colors duration-300 group-hover:text-cyan-200 sm:text-sm lg:text-base mb-3 xl:lg ">
                     {industry.title}
                 </h3>
 
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-cyan-400/70 bg-slate-950/50 text-cyan-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:border-cyan-300 group-hover:bg-cyan-400 group-hover:text-slate-950 sm:size-8">
+                {/* <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-cyan-400/70 bg-slate-950/50 text-cyan-300 transition-all duration-300 group-hover:translate-x-0.5 group-hover:border-cyan-300 group-hover:bg-cyan-400 group-hover:text-slate-950 sm:size-8">
                     <ArrowRight className="size-4" strokeWidth={2.5} />
-                </span>
+                </span> */}
             </div>
 
             {/* Fine inner border */}
             <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-white/10 transition-all duration-300 group-hover:ring-cyan-300/50" />
-        </Link>
+        </div>
     );
 }
 

@@ -201,7 +201,7 @@ export default function Packages() {
                                     {/* Get Quote */}
                                     <div className="mt-auto pt-6">
                                         <Link
-                                            href="/contact"
+                                            href="/Contact"
                                             className="group/button inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/5 px-4 py-2.5 text-[10px] font-bold text-cyan-300 transition-all duration-300 hover:border-cyan-300/70 hover:bg-cyan-400 hover:text-slate-950 hover:shadow-lg hover:shadow-cyan-400/20 sm:text-xs"
                                         >
                                             Get Quote
