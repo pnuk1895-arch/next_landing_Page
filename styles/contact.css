@@ -1,0 +1,243 @@
+/* contact section  */
+
+
+/* =========================================
+   ENTRANCE ANIMATIONS
+========================================= */
+
+@keyframes contact-enter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contact-reveal {
+  animation: contact-enter 800ms ease-out both;
+}
+
+.contact-reveal-delay {
+  animation: contact-enter 800ms 180ms ease-out both;
+}
+
+
+/* =========================================
+   AMBIENT BACKGROUND LIGHTING
+========================================= */
+
+@keyframes contact-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1.12);
+  }
+}
+
+.contact-glow {
+  animation: contact-glow 8s ease-in-out infinite;
+}
+
+.contact-glow-delay {
+  animation-delay: 3s;
+}
+
+
+/* =========================================
+   FORM CARD BORDER AND SHADOW
+========================================= */
+
+@keyframes contact-border {
+  0%,
+  100% {
+    border-color: rgb(34 211 238 / 55%);
+  }
+
+  50% {
+    border-color: rgb(99 102 241 / 80%);
+  }
+}
+
+.contact-card {
+  animation: contact-border 7s ease-in-out infinite;
+
+  transition:
+    box-shadow 400ms ease,
+    transform 400ms ease,
+    background-color 400ms ease;
+}
+
+.contact-card:hover {
+  box-shadow:
+    0 0 24px rgb(6 182 212 / 12%),
+    0 20px 60px rgb(0 0 0 / 30%);
+}
+
+
+/* =========================================
+   SEND ICON
+========================================= */
+
+@keyframes contact-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.contact-send-icon {
+  animation: contact-float 4s ease-in-out infinite;
+  transition:
+    border-color 300ms ease,
+    box-shadow 300ms ease,
+    color 300ms ease;
+}
+
+.contact-card:hover .contact-send-icon {
+  border-color: rgb(34 211 238 / 90%);
+  box-shadow: 0 0 24px rgb(6 182 212 / 25%);
+}
+
+
+/* =========================================
+   INPUT FOCUS EFFECTS
+========================================= */
+
+.contact-field {
+  transition:
+    border-color 250ms ease,
+    background-color 250ms ease,
+    box-shadow 250ms ease;
+}
+
+.contact-field:focus-within {
+  border-color: rgb(34 211 238 / 90%);
+  background-color: rgb(8 47 73 / 35%);
+  box-shadow: 0 0 0 3px rgb(34 211 238 / 8%);
+}
+
+.contact-field:focus-within > svg {
+  color: rgb(34 211 238);
+}
+
+.contact-field input:-webkit-autofill,
+.contact-field input:-webkit-autofill:hover,
+.contact-field input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+
+/* =========================================
+   BENEFIT ICON HOVER
+========================================= */
+
+.contact-icon {
+  transition:
+    transform 350ms ease,
+    color 350ms ease,
+    border-color 350ms ease,
+    box-shadow 350ms ease;
+}
+
+.contact-benefit:hover .contact-icon,
+.contact-icon:hover {
+  transform: translateY(-4px);
+  border-color: rgb(34 211 238 / 90%);
+  box-shadow: 0 0 22px rgb(6 182 212 / 20%);
+}
+
+
+/* =========================================
+   CTA BUTTON SHINE EFFECT
+========================================= */
+
+.contact-submit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+
+  transition:
+    transform 300ms ease,
+    box-shadow 300ms ease,
+    filter 300ms ease;
+}
+
+.contact-submit::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+
+  background: linear-gradient(
+    110deg,
+    transparent 20%,
+    rgb(255 255 255 / 25%) 48%,
+    transparent 75%
+  );
+
+  transform: translateX(-120%);
+  transition: transform 700ms ease;
+}
+
+.contact-submit:hover::before {
+  transform: translateX(120%);
+}
+
+.contact-submit:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 10px 30px rgb(37 99 235 / 30%),
+    0 0 18px rgb(6 182 212 / 12%);
+}
+
+.contact-submit:active {
+  transform: scale(0.985);
+}
+
+.contact-submit:disabled {
+  transform: none;
+  filter: none;
+  box-shadow: none;
+}
+
+
+/* =========================================
+   ACCESSIBILITY: REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-reveal,
+  .contact-reveal-delay,
+  .contact-glow,
+  .contact-card,
+  .contact-send-icon {
+    animation: none;
+  }
+
+  .contact-field,
+  .contact-icon,
+  .contact-benefit,
+  .contact-submit {
+    transition: none;
+  }
+
+  .contact-submit::before {
+    display: none;
+  }
+}

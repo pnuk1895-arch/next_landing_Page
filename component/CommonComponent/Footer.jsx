@@ -1,4 +1,3 @@
-
 import { Icon } from "@iconify/react";
 import Link from "next/link";
 import Image from "next/image";
@@ -49,7 +48,7 @@ export default function Footer() {
   return (
     <footer className="relative isolate w-full overflow-hidden border-t border-cyan-400/20 bg-linear-to-b from-slate-950 via-[#06172d] to-[#020b18] px-8 py-16 text-white sm:px-10 md:px-16 lg:px-20 ">
       {/* Background lighting */}
-      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden" >
         <div className="absolute -left-32 top-0 size-96 rounded-full bg-cyan-500/10 blur-3xl mix-blend-screen" />
 
         <div className="absolute right-0 top-0 size-80 rounded-full bg-blue-600/10 blur-3xl mix-blend-screen" />
@@ -89,6 +88,7 @@ export default function Footer() {
               <Link
                 href={path}
                 key={index}
+                target="_blank"
                 className="group rounded-xl border border-cyan-300/20 bg-linear-to-br from-white/10 to-white/2 p-2 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/70 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-500/10"
               >
                 <Icon

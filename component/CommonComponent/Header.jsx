@@ -7,6 +7,7 @@ import { ArrowRight, Cpu } from "lucide-react"
 import { useState } from 'react';
 import { Icon as ICON } from '@iconify/react';
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 const links = [
   ["Home", '/HeroSection'],
@@ -24,6 +25,7 @@ export default function Header() {
 
   const [isScrolled, setIsScrolled] = useState(false);
   const [Dropdown, setDropdown] = useState(false)
+  const router = useRouter()
 
   function OpenMenu() {
     setDropdown(true)
@@ -176,6 +178,7 @@ export default function Header() {
 
             <button
               type="button"
+              onClick={() => router.push('Contact')}
               className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-full bg-linear-to-r from-yellow-300 via-yellow-400 to-amber-400 px-4 py-2.5 text-xs font-bold text-slate-950 shadow-lg shadow-yellow-400/10 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-yellow-400/20 xl:px-5"
             >
 
@@ -183,7 +186,7 @@ export default function Header() {
               <span className="absolute inset-0 -translate-x-full bg-white/30 transition-transform duration-700 group-hover:translate-x-full" />
 
               <span className="relative whitespace-nowrap">
-                Get a Free Strategy Call
+                Get a Free Quote
               </span>
 
               <ArrowRight className="relative size-4 transition-transform duration-300 group-hover:translate-x-1" />
