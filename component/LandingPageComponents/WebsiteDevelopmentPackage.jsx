@@ -74,7 +74,7 @@ const packages = [
 
 export default function Packages() {
     return (
-        <section className="relative overflow-hidden bg-slate-950 text-white py-14 ">
+        <section id="Package" className="relative overflow-hidden bg-slate-950 text-white py-14 ">
             {/* Ambient Background */}
             <div className="pointer-events-none absolute inset-0">
                 <div className="absolute left-1/4 top-0 size-64 rounded-full bg-cyan-500/5 blur-3xl sm:size-80" />

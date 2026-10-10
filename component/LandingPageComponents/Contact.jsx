@@ -326,7 +326,6 @@ export function ContactSection() {
 
   return (
     <section
-      id="contact"
       className="relative isolate overflow-hidden bg-slate-950 py-12 text-white sm:py-16 lg:py-20"
     >
       {/* Ambient background */}
@@ -463,7 +462,7 @@ export function ContactSection() {
         </div>
 
         {/* Right side: reusable form */}
-        <div className="contact-reveal-delay min-w-0">
+        <div id="contact" className="contact-reveal-delay min-w-0">
           <ContactCard />
         </div>
       </div>

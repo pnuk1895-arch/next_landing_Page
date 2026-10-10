@@ -62,7 +62,7 @@ const services = [
 export default function ServicesSection() {
     return (
         <section
-            id="services"
+            id="Services"
             className="relative overflow-hidden bg-slate-950 pb-16 pt-8 text-white sm:pb-20 sm:pt-10 lg:pb-24 lg:pt-12"
         >
 

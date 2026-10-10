@@ -45,7 +45,7 @@ const impactStats = [
 export default function WhyAxvionalSection() {
     return (
         <section
-            id="about"
+            id="About"
             className="relative isolate overflow-hidden bg-slate-950 py-12 text-white sm:py-16 lg:py-8"
         >
 

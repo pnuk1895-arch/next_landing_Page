@@ -11,8 +11,8 @@ import { useRouter } from 'next/navigation';
 
 const links = [
   ["Home", '/#HeroSection'],
-  ["Services", '/#OurServices'],
-  ["Case Studies", '/#CaseStudies'],
+  ["Services", '/#Services'],
+  ["Case Studies", '/#About'],
   ["Packages", '/#Package'],
   ["Contact", '/#contact']
 ]

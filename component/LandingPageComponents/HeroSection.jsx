@@ -9,7 +9,7 @@ import {
 
 export default function HeroSection() {
   return (
-    <section className="relative isolate overflow-hidden bg-slate-950 text-white ">
+    <section id="HeroSection" className="relative isolate overflow-hidden bg-slate-950 text-white ">
 
       {/* =====================================================
             BACKGROUND
