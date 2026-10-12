@@ -118,22 +118,6 @@ export default function HeroSection() {
                 </span>
               </a>
 
-
-              {/* Our Work */}
-              {/* <a
-                href="#work"
-                className="group relative inline-flex w-full items-center justify-center gap-2 rounded-full border border-cyan-400/60 bg-slate-950/20 px-5 py-3.5 text-xs font-semibold text-white backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300 hover:bg-cyan-400/10 hover:shadow-lg hover:shadow-cyan-400/20 sm:w-auto sm:px-7 sm:text-sm"
-              >
-                <Play
-                  className="size-4 shrink-0 fill-cyan-400 text-cyan-400"
-                  strokeWidth={2.5}
-                />
-
-                <span className="whitespace-nowrap">
-                  Our Work
-                </span>
-              </a> */}
-
             </div>
 
 

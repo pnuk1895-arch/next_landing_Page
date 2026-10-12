@@ -92,8 +92,9 @@ function IndustryCard({ industry }) {
                 src={industry.image}
                 alt={industry.title}
                 fill
-                sizes="(min-width: 1280px) 20vw, (min-width: 1024px) 27vw, (min-width: 640px) 45vw, 96px"
-                className="object-fill object-center transition-transform duration-700 ease-out group-hover:scale-105"
+                sizes="96px"
+                quality={65}
+                className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             />
 
             {/* Dark image overlay */}
@@ -254,79 +255,79 @@ export default function IndustriesSection() {
                                 },
                             },
                         }}
-                    className="industries-swiper overflow-visible! py-8! hidden lg:block "
+                        className="industries-swiper overflow-visible! py-8! hidden lg:block "
                     >
-                    {[...industries, ...industries].map((industry, index) => (
-                        <SwiperSlide key={`${industry.title}-${index}`} className="h-auto!">
-                            <IndustryCard industry={industry} />
-                        </SwiperSlide>
-                    ))}
-                </Swiper>
+                        {[...industries, ...industries].map((industry, index) => (
+                            <SwiperSlide key={`${industry.title}-${index}`} className="h-auto!">
+                                <IndustryCard industry={industry} />
+                            </SwiperSlide>
+                        ))}
+                    </Swiper>
 
 
 
-                {/* Next arrow */}
-                <button
-                    type="button"
-                    aria-label="Next industries"
-                    className="industries-next absolute right-10! top-1/2 z-20 flex size-10 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full border border-cyan-400/60 bg-slate-950/90 text-cyan-400 shadow-lg backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:border-cyan-300 hover:bg-cyan-400 hover:text-slate-950 xl:right-2"
-                >
-                    <ArrowRight className="size-5" />
-                </button>
+                    {/* Next arrow */}
+                    <button
+                        type="button"
+                        aria-label="Next industries"
+                        className="industries-next absolute right-10! top-1/2 z-20 flex size-10 -translate-y-1/2 translate-x-1/2 items-center justify-center rounded-full border border-cyan-400/60 bg-slate-950/90 text-cyan-400 shadow-lg backdrop-blur-xl transition-all duration-300 hover:scale-110 hover:border-cyan-300 hover:bg-cyan-400 hover:text-slate-950 xl:right-2"
+                    >
+                        <ArrowRight className="size-5" />
+                    </button>
 
-                {/* Pagination dots */}
-                <div className="industries-pagination mt-4 flex items-center justify-center gap-2" />
-            </div>
+                    {/* Pagination dots */}
+                    <div className="industries-pagination mt-4 flex items-center justify-center gap-2" />
+                </div>
 
-            {/* =====================================================
+                {/* =====================================================
             TABLET GRID
         ====================================================== */}
-            <div className="hidden grid-cols-2 gap-4 sm:grid lg:hidden">
-                {industries.map((industry) => (
-                    <IndustryCard key={industry.title} industry={industry} />
-                ))}
-            </div>
+                <div className="hidden grid-cols-2 gap-4 sm:grid lg:hidden">
+                    {industries.map((industry) => (
+                        <IndustryCard key={industry.title} industry={industry} />
+                    ))}
+                </div>
 
-            {/* =====================================================
+                {/* =====================================================
             MOBILE ROWS
         ====================================================== */}
-            <div className="grid gap-2.5 sm:hidden">
-                {industries.map((industry) => {
-                    const Icon = industry.icon;
+                <div className="grid gap-2.5 sm:hidden">
+                    {industries.map((industry) => {
+                        const Icon = industry.icon;
 
-                    return (
-                        <Link
-                            key={industry.title}
-                            href={industry.href}
-                            className="group flex items-center gap-3 rounded-lg border border-cyan-400/25 bg-slate-950/80 p-2 transition-all duration-300 hover:border-cyan-300/60 hover:bg-cyan-400/5"
-                        >
-                            <div className="relative aspect-4/3 w-24 shrink-0 overflow-hidden rounded-md">
-                                <Image
-                                    src={industry.image}
-                                    alt={industry.title}
-                                    fill
-                                    sizes="96px"
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                            </div>
+                        return (
+                            <Link
+                                key={industry.title}
+                                href={industry.href}
+                                className="group flex items-center gap-3 rounded-lg border border-cyan-400/25 bg-slate-950/80 p-2 transition-all duration-300 hover:border-cyan-300/60 hover:bg-cyan-400/5"
+                            >
+                                <div className="relative aspect-4/3 w-24 shrink-0 overflow-hidden rounded-md">
+                                    <Image
+                                        src={industry.image}
+                                        alt={industry.title}
+                                        fill
+                                        sizes="96px"
+                                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                    />
+                                </div>
 
-                            <div className="flex size-8 shrink-0 items-center justify-center rounded-md border border-cyan-400/25 bg-cyan-400/10 text-cyan-400">
-                                <Icon className="size-4" strokeWidth={2} />
-                            </div>
+                                <div className="flex size-8 shrink-0 items-center justify-center rounded-md border border-cyan-400/25 bg-cyan-400/10 text-cyan-400">
+                                    <Icon className="size-4" strokeWidth={2} />
+                                </div>
 
-                            <span className="min-w-0 flex-1 text-[11px] font-semibold leading-4 text-white transition-colors group-hover:text-cyan-300">
-                                {industry.title}
-                            </span>
+                                <span className="min-w-0 flex-1 text-[11px] font-semibold leading-4 text-white transition-colors group-hover:text-cyan-300">
+                                    {industry.title}
+                                </span>
 
-                            <ArrowRight className="mr-1 size-4 shrink-0 text-cyan-400 transition-transform duration-300 group-hover:translate-x-1" />
-                        </Link>
-                    );
-                })}
+                                <ArrowRight className="mr-1 size-4 shrink-0 text-cyan-400 transition-transform duration-300 group-hover:translate-x-1" />
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
-        </div>
 
-            {/* Swiper pagination styling */ }
-    <style jsx global>{`
+            {/* Swiper pagination styling */}
+            <style jsx global>{`
         .industries-swiper .swiper-slide {
           transition:
             opacity 500ms ease,

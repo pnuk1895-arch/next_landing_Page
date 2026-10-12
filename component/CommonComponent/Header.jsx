@@ -18,7 +18,7 @@ const links = [
 ]
 
 const icons = [
-  ['eva:linkedin-outline','https://www.linkedin.com/company/axvionel-digital-private-limited'], ['basil:facebook-outline','https://www.facebook.com/axvioneldigital'], ['ant-design:instagram-outlined','https://www.instagram.com/axvioneldigital/'], ['bxl:telegram','https://t.me/axvionel?text=Hi%20I%20want%20website%20and%20digital%20marketing']
+  ['eva:linkedin-outline', 'https://www.linkedin.com/company/axvionel-digital-private-limited'], ['basil:facebook-outline', 'https://www.facebook.com/axvioneldigital'], ['ant-design:instagram-outlined', 'https://www.instagram.com/axvioneldigital/'], ['bxl:telegram', 'https://t.me/axvionel?text=Hi%20I%20want%20website%20and%20digital%20marketing']
 ]
 
 export default function Header() {
@@ -75,7 +75,7 @@ export default function Header() {
       className={`fixed inset-x-0 top-0 z-50 w-full transition-all duration-500 ease-out ${isScrolled
         ? "py-0"
         : "px-3 py-2 sm:px-5 md:px-8 lg:px-10"
-        }`} 
+        }`}
     >
       {/* =====================================================
         FULL WIDTH HEADER
@@ -112,9 +112,10 @@ export default function Header() {
               <Image
                 src="/images/Logo.webp"
                 alt="Axvional logo"
-                width={300}
-                height={200}
-                priority
+                width={44}
+                height={40}
+                sizes="44px"
+                quality={75}
                 className="h-10 w-11 object-contain transition-transform duration-500 group-hover:scale-105 sm:h-12 sm:w-14"
               />
 

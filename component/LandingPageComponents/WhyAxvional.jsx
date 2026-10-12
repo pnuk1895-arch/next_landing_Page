@@ -91,6 +91,7 @@ export default function WhyAxvionalSection() {
                                 alt="Business professionals discussing growth strategies in a modern Dubai office"
                                 fill
                                 sizes="(max-width: 639px) 100vw, (max-width: 1023px) 90vw, 42vw"
+                                quality={65}
                                 className="object-cover transition-transform duration-700 group-hover:scale-105"
                             />
 
@@ -177,17 +178,6 @@ export default function WhyAxvionalSection() {
                             ))}
                         </ul>
 
-                        {/* CTA
-                        <div className="mt-7">
-                            <Link
-                                href="/about"
-                                className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-5 py-3 text-[10px] font-bold text-slate-950 shadow-lg shadow-black/10 transition-all duration-300 hover:-translate-y-1 hover:bg-cyan-300 hover:shadow-cyan-400/20 sm:text-xs"
-                            >
-                                Learn More
-
-                                <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
-                            </Link>
-                        </div> */}
                     </div>
 
                     {/* Our Impact */}

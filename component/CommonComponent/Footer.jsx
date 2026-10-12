@@ -68,6 +68,7 @@ export default function Footer() {
             alt="Axvional Digital logo"
             width={300}
             height={200}
+            preload
             className="ml-4 h-26 w-26 transition-transform duration-500 hover:scale-105"
           />
 
