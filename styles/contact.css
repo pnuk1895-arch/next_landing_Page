@@ -241,3 +241,86 @@
     display: none;
   }
 }
+
+
+/* =====================================================
+   CONTACT SECTION — SCROLL REVEAL ANIMATIONS
+   Append this to your existing contact.css file.
+===================================================== */
+
+/* Default state remains visible until the observer is ready. */
+.contact-scroll-reveal {
+    opacity: 1;
+    transform: none;
+}
+
+/* Hide elements only after the observer has initialized. */
+[data-reveal-ready="true"] .contact-scroll-reveal:not(.is-visible) {
+    opacity: 0;
+    transition:
+        opacity 750ms ease,
+        transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: 0ms;
+    will-change: opacity, transform;
+}
+
+/* Desktop animation variants */
+[data-reveal-ready="true"] .contact-slide-left:not(.is-visible) {
+    transform: translate3d(-36px, 0, 0);
+}
+
+[data-reveal-ready="true"] .contact-flip:not(.is-visible) {
+    transform: perspective(1100px) rotateX(12deg) translate3d(0, 30px, 0);
+    transform-origin: top center;
+    backface-visibility: hidden;
+}
+
+[data-reveal-ready="true"] .contact-rise:not(.is-visible) {
+    transform: translate3d(0, 24px, 0);
+}
+
+/* Final state */
+.contact-scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+    transition:
+        opacity 750ms ease,
+        transform 750ms cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+}
+
+/* Larger movement on laptop/desktop */
+@media (min-width: 1024px) {
+    [data-reveal-ready="true"] .contact-slide-left:not(.is-visible) {
+        transform: translate3d(-55px, 0, 0);
+    }
+
+    [data-reveal-ready="true"] .contact-flip:not(.is-visible) {
+        transform: perspective(1100px) rotateX(16deg) translate3d(0, 38px, 0);
+    }
+}
+
+/* Gentler movement on mobile */
+@media (max-width: 639px) {
+    [data-reveal-ready="true"] .contact-slide-left:not(.is-visible),
+    [data-reveal-ready="true"] .contact-flip:not(.is-visible),
+    [data-reveal-ready="true"] .contact-rise:not(.is-visible) {
+        transform: translate3d(0, 22px, 0);
+    }
+
+    [data-reveal-ready="true"] .contact-scroll-reveal.is-visible {
+        transition-duration: 500ms;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .contact-scroll-reveal,
+    .contact-scroll-reveal.is-visible,
+    [data-reveal-ready="true"] .contact-scroll-reveal:not(.is-visible) {
+        opacity: 1;
+        transform: none;
+        transition: none;
+        animation: none;
+    }
+}

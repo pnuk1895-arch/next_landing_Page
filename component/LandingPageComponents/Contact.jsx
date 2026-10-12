@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowRight,
   BarChart3,
@@ -20,9 +20,57 @@ import {
 
 import "@/styles/contact.css";
 
+/**
+ * Adds scroll-triggered reveal animations to marked elements.
+ * Each element animates once, then remains visible.
+ */
+function useContactScrollReveal(sectionRef) {
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const targets = section.querySelectorAll("[data-scroll-reveal]");
+    const reducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    );
+
+    if (
+      reducedMotion.matches ||
+      !("IntersectionObserver" in window)
+    ) {
+      targets.forEach((element) => element.classList.add("is-visible"));
+      return;
+    }
+
+    section.dataset.revealReady = "true";
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px",
+      }
+    );
+
+    targets.forEach((element) => observer.observe(element));
+
+    return () => {
+      observer.disconnect();
+      delete section.dataset.revealReady;
+    };
+  }, [sectionRef]);
+}
+
 /* =====================================================
-   FUNCTION 1: CONTACT CARD
-   Contains the complete consultation form.
+   CONTACT CARD
+   Consultation form
 ===================================================== */
 
 export function ContactCard() {
@@ -50,33 +98,13 @@ export function ContactCard() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
     setStatus("submitting");
 
     try {
       /*
-       * Connect your backend here.
-       *
-       * Example:
-       * const response = await fetch(
-       *   `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`,
-       *   {
-       *     method: "POST",
-       *     headers: {
-       *       "Content-Type": "application/json",
-       *     },
-       *     body: JSON.stringify(formData),
-       *   }
-       * );
-       *
-       * if (!response.ok) {
-       *   throw new Error("Submission failed");
-       * }
-       *
-       * setStatus("success");
+       * Demo only: no data is sent to a server.
+       * Connect your backend here before using this form in production.
        */
-
-      // Demo only: no data is sent to a server.
       await new Promise((resolve) => setTimeout(resolve, 400));
       setStatus("demo");
     } catch {
@@ -120,9 +148,7 @@ export function ContactCard() {
       {/* Animated background lighting */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden rounded-3xl">
         <div className="contact-glow absolute -right-20 -top-20 size-64 rounded-full bg-blue-600/20 blur-3xl" />
-
         <div className="contact-glow contact-glow-delay absolute -bottom-24 -left-20 size-64 rounded-full bg-cyan-500/10 blur-3xl" />
-
         <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-cyan-950/30 to-transparent" />
       </div>
 
@@ -150,7 +176,6 @@ export function ContactCard() {
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Name, email, company and phone */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
           {fields.map((field) => {
             const Icon = field.icon;
@@ -202,7 +227,7 @@ export function ContactCard() {
               Social Media Marketing
             </option>
             <option className="bg-slate-950" value="Branding">
-              Branding & Creative
+              Branding &amp; Creative
             </option>
           </select>
 
@@ -289,13 +314,15 @@ export function ContactCard() {
   );
 }
 
-
 /* =====================================================
-   FUNCTION 2: COMPLETE CONTACT SECTION
-   Left content + ContactCard on the right.
+   CONTACT SECTION
+   Left content + ContactCard
 ===================================================== */
 
 export function ContactSection() {
+  const sectionRef = useRef(null);
+  useContactScrollReveal(sectionRef);
+
   const benefits = [
     { title: "Results", subtitle: "Driven", icon: BarChart3 },
     { title: "Expert", subtitle: "Team", icon: Users },
@@ -326,22 +353,18 @@ export function ContactSection() {
 
   return (
     <section
+     
+      ref={sectionRef}
       className="relative isolate overflow-hidden bg-slate-950 py-12 text-white sm:py-16 lg:py-20"
     >
       {/* Ambient background */}
       <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
         <div className="contact-glow absolute -left-40 top-1/4 size-96 rounded-full bg-blue-600/15 blur-3xl" />
-
         <div className="contact-glow contact-glow-delay absolute -right-32 top-0 size-96 rounded-full bg-cyan-500/10 blur-3xl" />
-
         <div className="contact-glow absolute bottom-0 left-1/3 size-96 rounded-full bg-violet-600/10 blur-3xl" />
-
         <div className="absolute inset-x-0 top-0 h-40 bg-linear-to-b from-blue-950/30 to-transparent" />
-
         <div className="absolute inset-x-0 bottom-0 h-40 bg-linear-to-t from-blue-950/30 to-transparent" />
-
         <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-cyan-300/20 to-transparent" />
-
         <div className="absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-cyan-300/15 to-transparent" />
       </div>
 
@@ -359,13 +382,15 @@ export function ContactSection() {
       </div>
 
       {/* Main layout */}
-      <div className="mx-auto grid w-full max-w-7xl min-w-0 grid-cols-1 items-center gap-10 px-6 sm:px-10 md:px-16 lg:grid-cols-2 lg:gap-10 lg:px-20 xl:gap-14 xl:px-10 ">
+      <div className="mx-auto grid w-full max-w-7xl min-w-0 grid-cols-1 items-center gap-10 px-6 sm:px-10 md:px-16 lg:grid-cols-2 lg:gap-10 lg:px-20 xl:gap-14 xl:px-10">
         {/* Left content */}
-        <div className="contact-reveal min-w-0">
+        <div
+          data-scroll-reveal
+          className="contact-scroll-reveal contact-slide-left min-w-0"
+        >
           {/* Eyebrow */}
           <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-blue-500/50 bg-blue-950/50 px-4 py-2 shadow-lg shadow-blue-500/10 transition duration-300 hover:border-cyan-400/70 hover:shadow-cyan-500/10">
             <span className="size-2.5 rounded-full bg-linear-to-r from-cyan-400 to-blue-600 shadow-lg shadow-cyan-400/50" />
-
             <span className="text-xs font-extrabold tracking-widest text-white sm:text-sm">
               GET IN TOUCH
             </span>
@@ -387,13 +412,15 @@ export function ContactSection() {
 
           {/* Benefits */}
           <div className="mt-8 grid grid-cols-4 divide-x divide-sky-900/70">
-            {benefits.map((benefit) => {
+            {benefits.map((benefit, index) => {
               const Icon = benefit.icon;
 
               return (
                 <div
                   key={benefit.title}
-                  className="contact-benefit flex min-w-0 flex-col items-center px-1 text-center sm:px-3"
+                  data-scroll-reveal
+                  style={{ "--reveal-delay": `${index * 90}ms` }}
+                  className="contact-scroll-reveal contact-rise flex min-w-0 flex-col items-center px-1 text-center sm:px-3"
                 >
                   <div className="contact-icon mb-3 flex size-11 items-center justify-center rounded-xl border border-blue-500/50 bg-linear-to-br from-blue-950 to-slate-950 text-cyan-400 shadow-lg shadow-blue-500/10 sm:size-14">
                     <Icon className="size-5 sm:size-7" />
@@ -426,7 +453,6 @@ export function ContactSection() {
                     <p className="text-xs font-bold uppercase tracking-widest text-cyan-400">
                       {detail.label}
                     </p>
-
                     <p className="mt-2 wrap-break-word text-sm font-medium text-white">
                       {detail.value}
                     </p>
@@ -437,11 +463,12 @@ export function ContactSection() {
               return (
                 <div
                   key={detail.label}
-                  className={`flex min-w-0 items-center gap-3 ${
-                    index === 0
+                  data-scroll-reveal
+                  style={{ "--reveal-delay": `${index * 90}ms` }}
+                  className={`contact-scroll-reveal contact-rise flex min-w-0 items-center gap-3 ${index === 0
                       ? "sm:pr-3"
                       : "sm:border-l sm:border-sky-900/70 sm:pl-3"
-                  }`}
+                    }`}
                 >
                   {detail.href ? (
                     <a
@@ -462,7 +489,11 @@ export function ContactSection() {
         </div>
 
         {/* Right side: reusable form */}
-        <div id="contact" className="contact-reveal-delay min-w-0">
+        <div
+          id="contact"
+          data-scroll-reveal
+          className="contact-scroll-reveal contact-flip min-w-0"
+        >
           <ContactCard />
         </div>
       </div>
